@@ -29,6 +29,7 @@
         justify-content: center;
         gap: 0.5rem;
         cursor: pointer;
+        border: none;
       }
       .btn-base:active {
         transform: translateY(0.25rem);
@@ -77,17 +78,17 @@
         animation: fadeIn 0.5s ease-out forwards;
       }
     </style>
-    <script type="importmap">
+  <script type="importmap">
 {
   "imports": {
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
     "react/": "https://aistudiocdn.com/react@^19.2.1/",
     "react": "https://aistudiocdn.com/react@^19.2.1",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
     "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0"
   }
 }
 </script>
-  </head>
+</head>
   <body class="bg-white text-neutral-900 antialiased selection:bg-[#F8C300] selection:text-black">
     
     <!-- HERO SECTION -->
@@ -121,11 +122,11 @@
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a href="#contact" class="btn-base btn-primary">
+          <a href="#contact" class="btn-base btn-primary no-underline">
             Quero organizar minhas finanças
             <i data-lucide="arrow-right" width="20"></i>
           </a>
-          <a href="#about" class="btn-base btn-secondary">
+          <a href="#about" class="btn-base btn-secondary no-underline">
             Conhecer meu método
           </a>
         </div>
@@ -315,41 +316,6 @@
       </div>
     </section>
 
-    <!-- INSIGHT GENERATOR -->
-    <section class="py-16 bg-white border-y border-neutral-100">
-      <div class="container mx-auto px-6 max-w-3xl text-center">
-        <div class="flex items-center justify-center gap-2 mb-6">
-          <i data-lucide="sparkles" class="text-[#F8C300]" width="24"></i>
-          <h3 class="text-2xl font-bold">Reflexão Rápida</h3>
-        </div>
-        
-        <p class="text-neutral-600 mb-8">
-          Digite um tema (ex: "poupança", "gastos", "futuro") e receba um insight filosófico e prático.
-        </p>
-
-        <form id="insight-form" class="flex flex-col sm:flex-row gap-4 mb-8">
-          <input
-            id="insight-input"
-            type="text"
-            placeholder="Sobre o que você quer pensar hoje?"
-            class="flex-1 p-4 border-2 border-neutral-200 rounded-lg focus:outline-none focus:border-black transition-colors bg-neutral-50"
-          />
-          <button type="submit" id="insight-submit" class="btn-base btn-primary min-w-[140px]">
-            <span id="btn-text">Gerar Insight</span>
-            <span id="btn-loader" class="hidden">
-               <i data-lucide="loader-2" class="animate-spin" width="20"></i>
-            </span>
-          </button>
-        </form>
-
-        <div id="insight-result" class="hidden bg-[#F8C300] bg-opacity-10 border border-[#F8C300] p-6 rounded-xl animate-fade-in text-left">
-          <p id="insight-text" class="text-xl font-medium text-neutral-800 italic">
-            <!-- Result goes here -->
-          </p>
-        </div>
-      </div>
-    </section>
-
     <!-- CONTACT -->
     <section id="contact" class="py-24 bg-white relative">
       <div class="container mx-auto px-6">
@@ -408,74 +374,6 @@
     <script>
       // Initialize icons
       lucide.createIcons();
-    </script>
-
-    <script type="module">
-      import { GoogleGenAI } from "@google/genai";
-
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
-      const form = document.getElementById('insight-form');
-      const input = document.getElementById('insight-input');
-      const submitBtn = document.getElementById('insight-submit');
-      const btnText = document.getElementById('btn-text');
-      const btnLoader = document.getElementById('btn-loader');
-      const resultContainer = document.getElementById('insight-result');
-      const resultText = document.getElementById('insight-text');
-
-      async function generateFinancialInsight(topic) {
-        try {
-          const prompt = `
-            Você é um economista experiente com 20 anos de mercado, combinando sociologia, filosofia e psicologia (Gestalt).
-            Seu estilo é direto, realista, pé no chão (estilo Mr. Money Mustache mas acessível como Nath Finanças).
-            
-            Gere uma reflexão CURTA (máximo 2 frases) e impactante sobre o tema: "${topic}".
-            
-            Não dê conselhos de investimento específicos. Focado em comportamento, clareza e propósito de vida.
-            Evite jargões complexos. Seja profundo mas simples.
-          `;
-
-          const response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash',
-            contents: prompt,
-            config: {
-              thinkingConfig: { thinkingBudget: 0 },
-              temperature: 0.7,
-            }
-          });
-
-          return response.text || "O dinheiro é apenas uma ferramenta para a liberdade, não o objetivo final.";
-        } catch (error) {
-          console.error("Erro ao gerar insight:", error);
-          return "A clareza financeira começa quando entendemos que o dinheiro serve à vida, e não o contrário.";
-        }
-      }
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const topic = input.value.trim();
-        if (!topic) return;
-
-        // Set Loading State
-        input.disabled = true;
-        submitBtn.disabled = true;
-        btnText.classList.add('hidden');
-        btnLoader.classList.remove('hidden');
-        resultContainer.classList.add('hidden');
-
-        // Call API
-        const insight = await generateFinancialInsight(topic);
-
-        // Update UI
-        resultText.innerText = `"${insight}"`;
-        resultContainer.classList.remove('hidden');
-
-        // Reset State
-        input.disabled = false;
-        submitBtn.disabled = false;
-        btnText.classList.remove('hidden');
-        btnLoader.classList.add('hidden');
-      });
     </script>
   </body>
 </html>
