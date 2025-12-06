@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clareza Financeira | Organização e Estratégia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        scroll-behavior: smooth;
+      }
+      h1, h2, h3, h4, h5, h6, .display-font {
+        font-family: 'Space Grotesk', sans-serif;
+      }
+      
+      /* Utilities mimicking the React Button component */
+      .btn-base {
+        font-weight: 700;
+        padding: 0.75rem 2rem;
+        border-radius: 0.5rem;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        cursor: pointer;
+      }
+      .btn-base:active {
+        transform: translateY(0.25rem);
+      }
+      
+      .btn-primary {
+        background-color: #F8C300;
+        color: black;
+        border: 2px solid black;
+        box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+      }
+      .btn-primary:hover {
+        background-color: #ffe066;
+        box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+        transform: translate(1px, 1px);
+      }
+      
+      .btn-secondary {
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+        box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+      }
+      .btn-secondary:hover {
+        background-color: #f9fafb;
+        box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+        transform: translate(1px, 1px);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+      }
+      .btn-outline:hover {
+        background-color: white;
+        color: black;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0"
+  }
+}
+</script>
+  </head>
+  <body class="bg-white text-neutral-900 antialiased selection:bg-[#F8C300] selection:text-black">
+    
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[90vh] flex items-center justify-center pt-20 pb-10 overflow-hidden bg-white">
+      <div class="absolute top-20 right-[-10%] w-[300px] h-[300px] rounded-full bg-[#F8C300] opacity-10 blur-3xl"></div>
+      <div class="absolute bottom-20 left-[-5%] w-[400px] h-[400px] rounded-full bg-neutral-200 opacity-20 blur-3xl"></div>
+
+      <div class="container mx-auto px-6 relative z-10 text-center max-w-4xl">
+        <div class="inline-block px-4 py-1.5 mb-6 border border-neutral-200 rounded-full bg-neutral-50">
+          <span class="text-sm font-semibold tracking-wide text-neutral-600 uppercase">
+            Consultoria & Educação Financeira
+          </span>
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-bold leading-[1.1] mb-8 tracking-tight text-neutral-900">
+          Organização financeira <br class="hidden md:block" />
+          <span class="relative inline-block">
+            sem complicação.
+            <svg class="absolute w-full h-3 -bottom-1 left-0 text-[#F8C300] -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
+              <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" opacity="0.6" />
+            </svg>
+          </span>
+        </h1>
+        
+        <p class="text-xl md:text-2xl text-neutral-600 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+          Clareza. Estratégia. Liberdade.
+          <br/>
+          <span class="text-base md:text-lg mt-2 block opacity-80">
+            Economista com 20 anos de experiência ajudando você a investir com inteligência.
+          </span>
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="#contact" class="btn-base btn-primary">
+            Quero organizar minhas finanças
+            <i data-lucide="arrow-right" width="20"></i>
+          </a>
+          <a href="#about" class="btn-base btn-secondary">
+            Conhecer meu método
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-neutral-100">
+          <div>
+            <h3 class="text-4xl md:text-5xl font-bold mb-2">20+</h3>
+            <p class="text-neutral-500 uppercase tracking-wide text-xs">Anos de Experiência</p>
+          </div>
+          <div>
+            <h3 class="text-4xl md:text-5xl font-bold mb-2">100+</h3>
+            <p class="text-neutral-500 uppercase tracking-wide text-xs">Famílias Atendidas</p>
+          </div>
+          <div>
+            <h3 class="text-4xl md:text-5xl font-bold mb-2">XP</h3>
+            <p class="text-neutral-500 uppercase tracking-wide text-xs">Anos em Bancos</p>
+          </div>
+          <div>
+            <h3 class="text-4xl md:text-5xl font-bold mb-2">10k+</h3>
+            <p class="text-neutral-500 uppercase tracking-wide text-xs">Leitores Mensais</p>
+          </div>
+        </div>
+        
+        <div class="mt-16 pt-10 border-t border-neutral-100">
+           <p class="text-center text-neutral-400 text-sm mb-6">EXPERIÊNCIA PRÉVIA EM GRANDES INSTITUIÇÕES</p>
+           <div class="flex flex-wrap justify-center gap-12 opacity-40 grayscale">
+              <div class="text-2xl font-black font-serif tracking-tighter">BANCO <span class="text-neutral-400">ALPHA</span></div>
+              <div class="text-2xl font-bold tracking-widest">INVEST<span class="font-light">CORP</span></div>
+              <div class="text-2xl font-extrabold italic">GLOBAL<span class="not-italic font-normal">FINANCE</span></div>
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-24 bg-neutral-50 border-t border-neutral-200">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col lg:flex-row items-center gap-16">
+          <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
+            <div class="relative">
+              <div class="w-64 h-80 md:w-80 md:h-96 bg-neutral-200 rounded-2xl border-2 border-black overflow-hidden shadow-[8px_8px_0px_0px_rgba(248,195,0,1)] relative z-10">
+                 <img 
+                  src="https://picsum.photos/400/500?grayscale" 
+                  alt="Retrato minimalista" 
+                  class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                />
+              </div>
+              <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')] opacity-20"></div>
+            </div>
+          </div>
+
+          <div class="w-full lg:w-1/2">
+            <h2 class="text-4xl font-bold mb-8 flex items-center gap-3">
+              Quem sou eu
+              <span class="h-1 w-20 bg-[#F8C300] block mt-2 rounded-full"></span>
+            </h2>
+            
+            <p class="text-lg text-neutral-700 leading-relaxed mb-8">
+              Sou economista com 20 anos de estrada, tendo passado por grandes bancos e empresas financeiras. 
+              Mas minha paixão real não está nas planilhas complexas, e sim em <strong>traduzir o financês para a vida real.</strong>
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="flex items-start gap-4">
+                <div class="p-2 bg-white border border-neutral-200 rounded-lg">
+                   <i data-lucide="briefcase" class="text-[#F8C300]" width="20"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">20 Anos de Mercado</h4>
+                  <p class="text-sm text-neutral-600">Vivência prática em instituições sólidas.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="p-2 bg-white border border-neutral-200 rounded-lg">
+                   <i data-lucide="globe" class="text-[#F8C300]" width="20"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Experiência Global</h4>
+                  <p class="text-sm text-neutral-600">Visão internacional aplicada à sua realidade.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="p-2 bg-white border border-neutral-200 rounded-lg">
+                   <i data-lucide="user" class="text-[#F8C300]" width="20"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Abordagem Humana</h4>
+                  <p class="text-sm text-neutral-600">Sociologia e psicologia aplicadas ao dinheiro.</p>
+                </div>
+              </div>
+
+               <div class="flex items-start gap-4">
+                <div class="p-2 bg-white border border-neutral-200 rounded-lg">
+                   <i data-lucide="heart" class="text-[#F8C300]" width="20"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold">Sem Ostentação</h4>
+                  <p class="text-sm text-neutral-600">Foco no que importa: sua tranquilidade.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section class="py-24 bg-neutral-950 text-white relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-2 bg-[#F8C300]"></div>
+      
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <span class="text-[#F8C300] font-bold tracking-widest uppercase mb-4 block text-sm">Minha Abordagem</span>
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-8">
+              Finanças não são sobre números.<br/>
+              <span class="text-neutral-400">São sobre vida.</span>
+            </h2>
+          </div>
+          
+          <div class="space-y-8">
+            <div class="pl-6 border-l-4 border-[#F8C300]">
+              <p class="text-2xl font-light">"Você não precisa de milagres, precisa de clareza."</p>
+            </div>
+            <div class="pl-6 border-l-4 border-neutral-700 hover:border-[#F8C300] transition-colors">
+              <p class="text-2xl font-light">"Menos ruído. Mais propósito."</p>
+            </div>
+            <div class="pl-6 border-l-4 border-neutral-700 hover:border-[#F8C300] transition-colors">
+              <p class="text-2xl font-light">"Dinheiro como ferramenta, não como prisão."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="py-24 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <h2 class="text-4xl font-bold mb-4">O Que Eu Faço</h2>
+          <p class="text-neutral-600">
+            Soluções desenhadas para quem busca organização sem perder a qualidade de vida.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div class="group bg-white p-8 rounded-xl border-2 border-neutral-100 hover:border-black transition-all duration-300 hover:shadow-[6px_6px_0px_0px_#F8C300]">
+            <div class="w-14 h-14 bg-neutral-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#F8C300] transition-colors duration-300 border border-neutral-100 group-hover:border-black">
+              <div class="text-neutral-900">
+                <i data-lucide="layout-dashboard" width="28"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Organização Financeira</h3>
+            <p class="text-neutral-600 leading-relaxed">Planos práticos para sair do caos. Definimos rotinas, organizamos o fluxo de caixa e criamos hábitos que duram.</p>
+          </div>
+          
+          <!-- Card 2 -->
+          <div class="group bg-white p-8 rounded-xl border-2 border-neutral-100 hover:border-black transition-all duration-300 hover:shadow-[6px_6px_0px_0px_#F8C300]">
+            <div class="w-14 h-14 bg-neutral-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#F8C300] transition-colors duration-300 border border-neutral-100 group-hover:border-black">
+              <div class="text-neutral-900">
+                <i data-lucide="book-open" width="28"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Educação Financeira</h3>
+            <p class="text-neutral-600 leading-relaxed">Conteúdos leves e acessíveis. Aprenda a linguagem do dinheiro sem complicações para tomar suas próprias decisões.</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="group bg-white p-8 rounded-xl border-2 border-neutral-100 hover:border-black transition-all duration-300 hover:shadow-[6px_6px_0px_0px_#F8C300]">
+            <div class="w-14 h-14 bg-neutral-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[#F8C300] transition-colors duration-300 border border-neutral-100 group-hover:border-black">
+              <div class="text-neutral-900">
+                <i data-lucide="trending-up" width="28"></i>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Acompanhamento</h3>
+            <p class="text-neutral-600 leading-relaxed">Orientação contínua para investir com propósito. Uma visão externa e experiente para validar sua estratégia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSIGHT GENERATOR -->
+    <section class="py-16 bg-white border-y border-neutral-100">
+      <div class="container mx-auto px-6 max-w-3xl text-center">
+        <div class="flex items-center justify-center gap-2 mb-6">
+          <i data-lucide="sparkles" class="text-[#F8C300]" width="24"></i>
+          <h3 class="text-2xl font-bold">Reflexão Rápida</h3>
+        </div>
+        
+        <p class="text-neutral-600 mb-8">
+          Digite um tema (ex: "poupança", "gastos", "futuro") e receba um insight filosófico e prático.
+        </p>
+
+        <form id="insight-form" class="flex flex-col sm:flex-row gap-4 mb-8">
+          <input
+            id="insight-input"
+            type="text"
+            placeholder="Sobre o que você quer pensar hoje?"
+            class="flex-1 p-4 border-2 border-neutral-200 rounded-lg focus:outline-none focus:border-black transition-colors bg-neutral-50"
+          />
+          <button type="submit" id="insight-submit" class="btn-base btn-primary min-w-[140px]">
+            <span id="btn-text">Gerar Insight</span>
+            <span id="btn-loader" class="hidden">
+               <i data-lucide="loader-2" class="animate-spin" width="20"></i>
+            </span>
+          </button>
+        </form>
+
+        <div id="insight-result" class="hidden bg-[#F8C300] bg-opacity-10 border border-[#F8C300] p-6 rounded-xl animate-fade-in text-left">
+          <p id="insight-text" class="text-xl font-medium text-neutral-800 italic">
+            <!-- Result goes here -->
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT SELECTOR -->
+    <section class="py-24 bg-neutral-50">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-12">Explore os Conteúdos</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <!-- Brazil Card -->
+          <a href="#blog-brasil" class="group relative overflow-hidden rounded-xl bg-white border-2 border-neutral-200 hover:border-black p-10 transition-all duration-300">
+            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+              <i data-lucide="map-pin" width="100"></i>
+            </div>
+            <div class="relative z-10 flex flex-col items-center">
+              <span class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4 text-green-700 group-hover:scale-110 transition-transform">
+                <span class="font-bold text-xl">BR</span>
+              </span>
+              <h3 class="text-2xl font-bold mb-2">Brasil</h3>
+              <p class="text-neutral-500 mb-6">Investimentos, renda fixa e contexto local.</p>
+              <span class="text-sm font-bold text-black border-b-2 border-[#F8C300] pb-1 group-hover:border-black transition-colors">
+                Ler artigos
+              </span>
+            </div>
+          </a>
+
+          <!-- Europe Card -->
+          <a href="#blog-europa" class="group relative overflow-hidden rounded-xl bg-white border-2 border-neutral-200 hover:border-black p-10 transition-all duration-300">
+             <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+              <i data-lucide="map-pin" width="100"></i>
+            </div>
+            <div class="relative z-10 flex flex-col items-center">
+              <span class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-4 text-blue-700 group-hover:scale-110 transition-transform">
+                <span class="font-bold text-xl">EU</span>
+              </span>
+              <h3 class="text-2xl font-bold mb-2">Europa</h3>
+              <p class="text-neutral-500 mb-6">Vida no exterior, euro e diversificação.</p>
+              <span class="text-sm font-bold text-black border-b-2 border-[#F8C300] pb-1 group-hover:border-black transition-colors">
+                Ler artigos
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-24 bg-white relative">
+      <div class="container mx-auto px-6">
+        <div class="bg-neutral-900 rounded-2xl p-8 md:p-16 text-center shadow-[8px_8px_0px_0px_#F8C300] border-2 border-black relative overflow-hidden">
+          
+          <div class="absolute top-0 right-0 w-64 h-64 bg-[#F8C300] opacity-5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+
+          <div class="relative z-10 max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
+              Pronto para transformar sua relação com o dinheiro?
+            </h2>
+            <p class="text-neutral-400 text-lg mb-10">
+              Sem fórmulas mágicas. Apenas organização, estratégia e paz mental.
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+              <button class="btn-base btn-primary">
+                Agendar Sessão de Diagnóstico
+              </button>
+              <button class="btn-base btn-outline group">
+                Seguir no TikTok 
+                <i data-lucide="arrow-up-right" width="18" class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+              </button>
+              <button class="btn-base btn-outline group">
+                Acessar o Blog 
+                <i data-lucide="arrow-up-right" width="18" class="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white py-12 border-t border-neutral-800">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-12">
+          <div>
+            <h3 class="text-2xl font-bold text-[#F8C300] mb-2">Clareza.</h3>
+            <p class="text-neutral-400 text-sm max-w-xs">
+              Organização financeira para uma vida com mais propósito e liberdade.
+            </p>
+          </div>
+          
+          <div class="flex flex-wrap gap-6 text-sm text-neutral-300">
+            <a href="#" class="hover:text-[#F8C300] transition-colors">Sobre</a>
+            <a href="#" class="hover:text-[#F8C300] transition-colors">Serviços</a>
+            <a href="#" class="hover:text-[#F8C300] transition-colors">Blog</a>
+            <a href="#" class="hover:text-[#F8C300] transition-colors">Contato</a>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t border-neutral-800 text-xs text-neutral-500 flex flex-col md:flex-row justify-between gap-4">
+          <p>© 2024 Todos os direitos reservados.</p>
+          <p class="max-w-lg text-justify md:text-right">
+            <strong>Aviso Legal:</strong> Conteúdos com foco estritamente educativo e informativo. 
+            Não realizo recomendações personalizadas de compra ou venda de ativos mobiliários (CNPI). 
+            Rentabilidade passada não é garantia de rentabilidade futura.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+      // Initialize icons
+      lucide.createIcons();
+    </script>
+
+    <script type="module">
+      import { GoogleGenAI } from "@google/genai";
+
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
+      const form = document.getElementById('insight-form');
+      const input = document.getElementById('insight-input');
+      const submitBtn = document.getElementById('insight-submit');
+      const btnText = document.getElementById('btn-text');
+      const btnLoader = document.getElementById('btn-loader');
+      const resultContainer = document.getElementById('insight-result');
+      const resultText = document.getElementById('insight-text');
+
+      async function generateFinancialInsight(topic) {
+        try {
+          const prompt = `
+            Você é um economista experiente com 20 anos de mercado, combinando sociologia, filosofia e psicologia (Gestalt).
+            Seu estilo é direto, realista, pé no chão (estilo Mr. Money Mustache mas acessível como Nath Finanças).
+            
+            Gere uma reflexão CURTA (máximo 2 frases) e impactante sobre o tema: "${topic}".
+            
+            Não dê conselhos de investimento específicos. Focado em comportamento, clareza e propósito de vida.
+            Evite jargões complexos. Seja profundo mas simples.
+          `;
+
+          const response = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: prompt,
+            config: {
+              thinkingConfig: { thinkingBudget: 0 },
+              temperature: 0.7,
+            }
+          });
+
+          return response.text || "O dinheiro é apenas uma ferramenta para a liberdade, não o objetivo final.";
+        } catch (error) {
+          console.error("Erro ao gerar insight:", error);
+          return "A clareza financeira começa quando entendemos que o dinheiro serve à vida, e não o contrário.";
+        }
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const topic = input.value.trim();
+        if (!topic) return;
+
+        // Set Loading State
+        input.disabled = true;
+        submitBtn.disabled = true;
+        btnText.classList.add('hidden');
+        btnLoader.classList.remove('hidden');
+        resultContainer.classList.add('hidden');
+
+        // Call API
+        const insight = await generateFinancialInsight(topic);
+
+        // Update UI
+        resultText.innerText = `"${insight}"`;
+        resultContainer.classList.remove('hidden');
+
+        // Reset State
+        input.disabled = false;
+        submitBtn.disabled = false;
+        btnText.classList.remove('hidden');
+        btnLoader.classList.add('hidden');
+      });
+    </script>
+  </body>
+</html>
